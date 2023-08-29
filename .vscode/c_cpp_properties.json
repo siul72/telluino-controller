@@ -10,12 +10,13 @@
             "includePath": [
                 "c:/Users/siul72/Documents/workspace/telluino-controller/include",
                 "c:/Users/siul72/Documents/workspace/telluino-controller/src",
+                "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "c:/Users/siul72/Documents/workspace/telluino-controller/.pio/libdeps/nanoatmega328/TaskScheduler/src",
                 "C:/Users/siul72/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "C:/Users/siul72/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
                 "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                 "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                 "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                 "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                 ""
             ],
@@ -24,12 +25,13 @@
                 "path": [
                     "c:/Users/siul72/Documents/workspace/telluino-controller/include",
                     "c:/Users/siul72/Documents/workspace/telluino-controller/src",
+                    "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "c:/Users/siul72/Documents/workspace/telluino-controller/.pio/libdeps/nanoatmega328/TaskScheduler/src",
                     "C:/Users/siul72/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "C:/Users/siul72/.platformio/packages/framework-arduino-avr/variants/eightanaloginputs",
                     "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
                     "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/HID/src",
                     "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
-                    "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
                     "C:/Users/siul72/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
                     ""
                 ]
