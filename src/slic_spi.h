@@ -10,11 +10,12 @@ private:
     SPISettings *my_setting=NULL;
     
 public:
-    SlicSpi(/* args */);
+    SlicSpi();
     ~SlicSpi();
     void setup();
     uint16_t readByte();
     void writeByte(uint16_t value);
+
 };
 
 

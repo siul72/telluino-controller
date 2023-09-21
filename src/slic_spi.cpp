@@ -29,6 +29,7 @@ SlicSpi::SlicSpi()
 SlicSpi::~SlicSpi()
 {
     delete my_setting;
+    
 }
 
 void SlicSpi::setup()
