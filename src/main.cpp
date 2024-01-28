@@ -1,6 +1,6 @@
 #include <Arduino.h>
 #include <TaskScheduler.h>
-#include "usb_device.h"
+//#include "usb_device.h"
 #include "slic_device.h" 
 
 #define TEL_VERSION_MAJOR 0
@@ -26,7 +26,7 @@ void slicRunner();
 //create Instances of the Classes
 
 Scheduler runner;
-UsbDevice my_usb_device(USB_SER_RX, USB_SER_TX);
+//UsbDevice my_usb_device(USB_SER_RX, USB_SER_TX);
 SlicDevice my_slic_device;
 
 Task blinkLedTask(1000, TASK_FOREVER, &blinkLeds);
@@ -35,7 +35,7 @@ Task slicRunnerTask(500, TASK_FOREVER, &slicRunner);
 
 //*************************** TASK FUNCTIONS *********************************
 void blinkLeds() {
-  //Serial.println(">> blinkLeds");
+  Serial.println(">> blinkLeds");
   led_status = 1 - led_status;
   digitalWrite(LED_BUILTIN, led_status);   
   digitalWrite(LED_OP1, led_status);
@@ -46,7 +46,7 @@ void blinkLeds() {
 void readUsb() {
   Serial.println(">> readUsb");
   readUsbTask.disable();
-  my_usb_device.read();
+  //my_usb_device.read();
   readUsbTask.enableDelayed(3000);
 
 }
@@ -67,17 +67,17 @@ void setup() {
 
   Serial.begin(115200);
   Serial.println("setup...");
-  my_usb_device.setup();
+  //my_usb_device.setup();
   my_slic_device.setup();
   Serial.println("... initialized usb ...");
   runner.init();
   Serial.println("... initialized scheduler ...");
   runner.addTask(blinkLedTask);
-  runner.addTask(readUsbTask);
+  //runner.addTask(readUsbTask);
   runner.addTask(slicRunnerTask);
   blinkLedTask.enable();
-  readUsbTask.enable();
-  slicRunnerTask.enable();
+  //readUsbTask.enable();
+  //slicRunnerTask.enable();
   sprintf(buffer, "... starting Telluino V%d.%d for hardware V%d.%d", TEL_VERSION_MAJOR, TEL_VERSION_MINOR,
   TEL_HW_VERSION_MAJOR, TEL_HW_VERSION_MINOR);
   Serial.println(buffer);
