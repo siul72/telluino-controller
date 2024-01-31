@@ -2,8 +2,21 @@
 #define SLIC_DEVICE_H
  
 #include <Arduino.h>
+#include <Time.h>
+
 #include "slic_spi.h"
 #include "slic_pcm.h"
+
+struct timespec {
+    time_t tv_sec;
+    long tv_nsec;
+    long tv_usec;
+};
+
+struct itimerspec {
+    struct timespec  it_interval;
+    struct timespec  it_value;
+};
 
 enum SlicRegister{
 

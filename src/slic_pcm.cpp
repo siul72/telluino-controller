@@ -1,24 +1,6 @@
 #include "slic_pcm.h"
-#include "sound_data.h"
-#include <avr/pgmspace.h> 
-
-ISR(TIMER1_COMPA_vect) {
-    if (SlicPcm.sample >= sounddata_length) {
-      if (sample == sounddata_length + lastSample) {
-        stopPlayback();
-    }
-    else {
-            // Ramp down to zero to reduce the click at the end of playback.
-      OCR2A = sounddata_length + lastSample - sample;
-    }
-    }
-    else {
-        stream =  pgm_read_byte(&sounddata_data[0]);
-        
-    }
-
-    ++sample;
-}
+ 
+ 
 
 SlicPcm::SlicPcm()
 {
@@ -55,7 +37,7 @@ void SlicPcm::startPlayback()
     TCCR2B = (TCCR2B & ~(_BV(CS12) | _BV(CS11))) | _BV(CS10);
 
     // Set initial pulse width to the first sample.
-    OCR2A = pgm_read_byte(&sounddata_data[0]);
+    //OCR2A = pgm_read_byte(&sounddata_data[0]);
 
 
     // Set up Timer 1 to send a sample every interrupt.
@@ -73,7 +55,7 @@ void SlicPcm::startPlayback()
     // Set the compare register (OCR1A).
     // OCR1A is a 16-bit register, so we have to do this with
     // interrupts disabled to be safe.
-    OCR1A = F_CPU / sounddata_sampleRate;    // 16e6 / 8000 = 2000
+    //OCR1A = F_CPU / sounddata_sampleRate;    // 16e6 / 8000 = 2000
 
     // Enable interrupt when TCNT1 == OCR1A (p.136)
     TIMSK1 |= _BV(OCIE1A);
@@ -81,6 +63,10 @@ void SlicPcm::startPlayback()
     //lastSample = pgm_read_byte(&sounddata_data[sounddata_length-1]);
     sample = 0;
     sei();
+}
+
+void SlicPcm::playNext()
+{
 }
 
 void SlicPcm::initPcmCLock()
