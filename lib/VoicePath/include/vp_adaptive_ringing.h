@@ -13,7 +13,7 @@
 #ifndef VP_THERMAL_RINGING_H
 #define VP_THERMAL_RINGING_H
 
-#include "vp886_registers.h"
+#include "src/vp886_registers.h"
 
 /* Thermal Ringing Timer duration in ms. This needs to be short enough
  * so that the SADC and VADC buffers are emptied often enough not

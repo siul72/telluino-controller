@@ -30,6 +30,9 @@
 
 #include "vp886_registers.h"
 
+#ifndef VP886_EVENT_QUEUE_SIZE
+    #define VP886_EVENT_QUEUE_SIZE 6
+#endif
 
 /* Enforce a minimum configurable event queue size */
 #define VP886_EVENT_QUEUE_MIN_SIZE 6

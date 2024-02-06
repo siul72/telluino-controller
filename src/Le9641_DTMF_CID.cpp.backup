@@ -1,5 +1,5 @@
 
-#include "slic_device.h"
+
 #include <signal.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,10 +15,10 @@
 #include "profiles.h"
 
 /* ZTAP specific initialization header */
-#include "sdk_qs_board.h"
+#include "src/sdk_qs_board.h"
 
 /* Common utility functions */
-#include "sdk_qs_utils.h"
+#include "src/sdk_qs_utils.h"
 #include "vp886_api.h"
 
 
@@ -98,22 +98,6 @@ int init_slic_chip(void)
     //BoardInit(); /* See "../common/board.c" */
     //VpSysInit();
 
-    /*
-     * The following structure is specific to Linux.  It sets up a timed call
-     * to a user specified function.  For the purpose of this demo, the timing
-     * is 20mS and the function that will be called is "alarmHandle".  The timer
-     * and function call does not start until "setitimer()" and "signal()" are
-     * called (below).
-     */
-    timeStruct.it_interval.tv_sec = 0L;
-    timeStruct.it_interval.tv_usec = 19990L;
-    timeStruct.it_value.tv_sec = 0L;
-    timeStruct.it_value.tv_usec = 19990L;
-
-    timeOldVal.it_interval.tv_sec = 0L;
-    timeOldVal.it_interval.tv_usec = 0L;
-    timeOldVal.it_value.tv_sec = 0L;
-    timeOldVal.it_value.tv_usec = 0L;
 
     /* Make the objects (1 device, 2 lines) */
     status = VpMakeDeviceObject(VP_DEV_887_SERIES, deviceId, &devCtx, &devObj);
@@ -147,19 +131,6 @@ int init_slic_chip(void)
         QS_DEBUG("\nDevice Initialization started\n");
     }
 
-    /*
-     * The following two function calls were described above as Linux specific.
-     * They are used to call a user defined function at set increments.  The
-     * user may have several other methods to perform the same.
-     */
-    //signal(SIGVTALRM, alarmHandle);
-    //setitimer(ITIMER_VIRTUAL, &timeStruct, &timeOldVal);
-
-    /*
-     * Once the "tick" is setup, the main program can enter a "while(1)" loop
-     * and the user specified function will take over the application (with the
-     * help of the Linux OS)
-     */
 
     while(TRUE);
     return 0;

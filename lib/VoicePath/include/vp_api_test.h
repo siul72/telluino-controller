@@ -70,7 +70,7 @@ typedef enum VpTestIdType {
     VP_TEST_ID_LOOPBACK,        /* Setup loopback conditions */
     VP_TEST_ID_LINE_IMPD,       /* Measure impedance at a frequency */
     VP_TEST_ID_RING_TRIP,       /* Test ability to detect ring trip */
-    VP_TEST_ID_LOOP_DETECT,     /* Test ability to source current and detect
+    VP_TEST_ID_LOOP_DETECT,     /* Test ability to src current and detect
                                  * off-hook */
     VP_TEST_ID_CALIBRATE,       /* Perform line calibration */
     VP_TEST_ID_USE_LINE_CAL,    /* Copy dev cal factors from lineObj to devObj */
@@ -868,7 +868,7 @@ typedef struct VpTestMonitorIvType {
     uint16 integrateTime;               /* Integration time in units of 125us */
     uint16 settlingTime;                /* Filter settling time in units of 125us */
     VpMonitorIvFilterType filterType;   /* Measurement Type (AC/DC) */
-    VpMonitorIvTestMeasurementType measurement; /* measurement source */
+    VpMonitorIvTestMeasurementType measurement; /* measurement src */
 } VpTestMonitorIvType;
 
 /* Definitions used for VP_TEST_ID_UNBAL_TONE */

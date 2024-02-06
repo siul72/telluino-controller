@@ -11,13 +11,13 @@
     "platforms": "ststm32",
     "build": {
         "libArchive": false,
-		"flags": [
-			"-I source/include",
-            "-I source/common",
-            "-I source/arch/examples",
-            "-I source/api_lib/common",
-            "-I source/api_lib/includes",
-            "-I source/api_lib/vp886_api"
-        ]
+//		"flags": [
+//			"-I source/include",
+//            "-I source/common",
+//            "-I source/arch/examples",
+//            "-I source/api_lib/common",
+//            "-I source/api_lib/includes",
+//            "-I source/api_lib/vp886_api"
+//        ]
     }
 }
