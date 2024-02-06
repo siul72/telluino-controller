@@ -16,7 +16,7 @@
  * are user defined and may be simple device indexing (0, 1, .. (n-1)):
  * where n = device number in system
  */
-typedef unsigned char VpDeviceIdType;
+typedef int VpDeviceIdType;
 /*
  * The 'VpLineIdType'  defines a system wide Line identification that the system
  * could use to identify a line. This type can be defined to contain anything
