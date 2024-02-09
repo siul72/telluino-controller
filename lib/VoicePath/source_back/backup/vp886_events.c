@@ -9,7 +9,7 @@
  * $LastChangedDate: 2018-06-26 15:32:22 -0500 (Tue, 26 Jun 2018) $
  */
 
-#include "vp_api_cfg.h"
+#include "backup/vp_api_cfg.h"
 
 #if defined (VP_CC_886_SERIES)
 

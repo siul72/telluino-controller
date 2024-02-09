@@ -5,8 +5,6 @@
 
 
 #include "vp_api.h"
-#include "vp886_api.h"
-#include "sdk_qs_utils.h"
 #include "slic_spi.h"
 #include "slic_pcm.h"
 

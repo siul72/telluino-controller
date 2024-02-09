@@ -9,9 +9,9 @@
  * $LastChangedDate: 2017-08-30 16:45:09 -0500 (Wed, 30 Aug 2017) $
  */
 
-#include "vp_api_cfg.h"
-#include "vp_api.h"
-#include "vp_debug.h"
+#include "backup/vp_api_cfg.h"
+#include "backup/vp_api.h"
+#include "backup/vp_debug.h"
 
 #if defined (VP_CC_VCP2_SERIES) || defined (VP_CC_MELT_SERIES)
 #include "hbi_common.h"

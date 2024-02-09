@@ -8,8 +8,8 @@
  * $Revision: 12378 $
  * $LastChangedDate: 2017-05-02 17:26:30 -0500 (Tue, 02 May 2017) $
  */
-#include "vp_timer_queue.h"
-#include "vp_debug.h"
+#include "backup/vp_timer_queue.h"
+#include "backup/vp_debug.h"
 
 #if defined (VP_CC_886_SERIES)
 #include "vp886_api_int.h"

@@ -12,6 +12,7 @@
 #ifndef VP_CSLAC_TYPES_H
 #define VP_CSLAC_TYPES_H
 
+#include "vp_api_fxo_params.h"
 #include "vp_api_timer.h"
 
 #define VP_CSLAC_DEV_PROFILE_VERSION_INT_SW_CONFIG_FR   5

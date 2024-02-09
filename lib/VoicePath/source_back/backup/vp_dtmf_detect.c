@@ -21,7 +21,7 @@
  * $LastChangedDate: 2013-05-21 18:04:34 -0500 (Tue, 21 May 2013) $
  */
 
-#include "vp_api_cfg.h"
+#include "backup/vp_api_cfg.h"
 
 #if defined(VP886_INCLUDE_DTMF_DETECT)
 

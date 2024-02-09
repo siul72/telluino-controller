@@ -10,7 +10,7 @@
  * $LastChangedDate: 2013-07-19 10:43:36 -0500 (Fri, 19 Jul 2013) $
  */
 
-#include "vp_api_cfg.h"
+#include "backup/vp_api_cfg.h"
 
 #ifdef VP886_INCLUDE_ADAPTIVE_RINGING
 

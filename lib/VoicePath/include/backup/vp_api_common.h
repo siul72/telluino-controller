@@ -14,10 +14,11 @@
 #define VP_API_COMMON_H
 
 #include "vp_api_types.h"
+#include "vp_api_dev_term.h"
 #include "vp_api_event.h"
 #include "vp_api_option.h"
 #include "vp_api_test.h"
-#include "vp_api_dev_term.h"
+
 
 /******************************************************************************
  *                                DEFINES                                     *
@@ -1611,7 +1612,7 @@ typedef struct VpEventType {
     uint16 eventId;     /**< The event that occurred.  Requires that the event
                          *   catagory be known to interpret */
 
-    uint16 parmHandle;  /**< Eventï¿½s Parameter or Host Handle.  This value is
+    uint16 parmHandle;  /**< Event’s Parameter or Host Handle.  This value is
                          *   specified by the application only, not used by the
                          *   API */
 

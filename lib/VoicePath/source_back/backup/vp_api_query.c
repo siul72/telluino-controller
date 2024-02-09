@@ -11,11 +11,11 @@
  */
 
 /* INCLUDES */
-#include "vp_api.h"     /* Typedefs and function prototypes for API */
+#include "backup/vp_api.h"     /* Typedefs and function prototypes for API */
 
-#include "vp_hal.h"
-#include "vp_api_int.h" /* Device specific typedefs and function prototypes */
-#include "sys_service.h"
+#include "backup/vp_hal.h"
+#include "backup/vp_api_int.h" /* Device specific typedefs and function prototypes */
+#include "backup/sys_service.h"
 
 #if defined (VP_CC_880_SERIES)
 #include "vp880_api_int.h"

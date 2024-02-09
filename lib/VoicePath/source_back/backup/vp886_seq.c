@@ -11,7 +11,7 @@
  * $LastChangedDate: 2017-08-30 13:10:12 -0500 (Wed, 30 Aug 2017) $
  */
 
-#include "vp_api_cfg.h"
+#include "backup/vp_api_cfg.h"
 
 #if defined (VP_CC_886_SERIES)
 #ifdef VP_CSLAC_SEQ_EN

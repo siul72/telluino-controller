@@ -3,7 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-#include "sdk_qs_pin_ctrl.h"
+#include "backup/sdk_qs_pin_ctrl.h"
 
 /**
  * sdk_qs_pin_ctrl.c

@@ -88,7 +88,7 @@
   #undef VP_CC_880_SERIES   /**< define to build 880 specific API library;
                               *   undef to exclude this library. */
 
-  #define VP_CC_886_SERIES   /**< define to build 886/887 specific API library;
+  #undef VP_CC_886_SERIES   /**< define to build 886/887 specific API library;
                              *   undef to exclude this library. */
 
   #undef VP_CC_890_SERIES   /**< define to build 890 specific API library;

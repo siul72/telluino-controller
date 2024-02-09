@@ -11,7 +11,6 @@
 
 #ifndef VP_API_OPTION
 #define VP_API_OPTION
-
 #include <Arduino.h>
 #include "vp_api_types.h"
 #include "vp_api_cfg.h"

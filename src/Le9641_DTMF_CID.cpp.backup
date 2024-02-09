@@ -11,7 +11,7 @@
  * profiles used by the application.  At a minimum, there must be a Device
  * Profile for the device to initialize.
  */
-#include "vp_api.h"
+#include "backup/vp_api.h"
 #include "profiles.h"
 
 /* ZTAP specific initialization header */
@@ -19,7 +19,7 @@
 
 /* Common utility functions */
 #include "src/sdk_qs_utils.h"
-#include "vp886_api.h"
+#include "backup/vp886_api.h"
 
 
 /* ZTAP specific values for device ID depending on the MPI Mode */

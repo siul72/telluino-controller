@@ -13,9 +13,10 @@
 #define VP886_API_H
 
 #include "vp_api_cfg.h"
+#include "vp_hal.h"
 #include "vp_CSLAC_types.h"
 #include "vp_api_common.h"
-
+#include "vp_timer_queue.h"
 #ifdef VP886_INCLUDE_ADAPTIVE_RINGING
 #include "vp_adaptive_ringing.h"
 #endif

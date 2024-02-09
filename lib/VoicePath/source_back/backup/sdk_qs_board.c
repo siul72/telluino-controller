@@ -4,12 +4,12 @@
 
 #include <unistd.h> /* sleep() */
 
-#include "sdk_qs_board.h"
-#include "vp_api.h"
-#include "sys_service.h"
+#include "backup/sdk_qs_board.h"
+#include "backup/vp_api.h"
+#include "backup/sys_service.h"
 
 //#include "telecom_lib.h"
-#include "telecom_lib_workaround.h"
+#include "backup/telecom_lib_workaround.h"
 
 EXTERN bool VpSysInit();
 

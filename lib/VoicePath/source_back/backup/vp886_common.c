@@ -9,7 +9,7 @@
  * $Revision: 12587 $
  * $LastChangedDate: 2018-06-21 17:22:20 -0500 (Thu, 21 Jun 2018) $
  */
-#include "backup/vp_api_cfg.h"
+#include "vp_api_cfg.h"
 
 #if defined (VP_CC_886_SERIES)
 
@@ -797,7 +797,8 @@ Vp886EnterCritical(
   This function should be the only place in the Vp886 API where VpSysExitCritical
   is called.
 */
-void Vp886ExitCritical(
+void
+Vp886ExitCritical(
     VpDevCtxType *pDevCtx,
     VpLineCtxType *pLineCtx,
     char* funcName)

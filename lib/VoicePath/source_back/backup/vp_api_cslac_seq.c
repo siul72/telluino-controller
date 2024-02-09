@@ -9,7 +9,7 @@
  * $LastChangedDate: 2017-08-02 13:55:08 -0500 (Wed, 02 Aug 2017) $
  */
 
-#include "vp_api_cfg.h"
+#include "backup/vp_api_cfg.h"
 #if (defined (VP_CC_880_SERIES) || defined (VP_CC_890_SERIES)) && defined (VP_CSLAC_SEQ_EN)
 
 /* INCLUDES */
