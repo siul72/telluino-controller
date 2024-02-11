@@ -285,6 +285,33 @@ typedef enum VpTestIdType {
     VP_TEST_ID_ENUM_SIZE = FORCE_STANDARD_C_ENUM_SIZE /* Portability Req.*/
 } VpTestIdType;
 
+/* Critical section types */
+typedef enum {
+    VP_MPI_CRITICAL_SEC, 	/* MPI access critical code section */
+    VP_HBI_CRITICAL_SEC, 	/* HBI access critical code section */
+    VP_CODE_CRITICAL_SEC, 	/* Critical code section */
+    VP_NUM_CRITICAL_SEC_TYPES, /* The number of critical section types */
+    VP_CRITICAL_SEC_ENUM_SIZE = FORCE_STANDARD_C_ENUM_SIZE /* Portability Req. */
+} VpCriticalSecType;
 
+EXTERN uint8
+VpSysEnterCritical(
+        VpDeviceIdType deviceId,
+        VpCriticalSecType criticalSecType);
+
+EXTERN uint8
+VpSysExitCritical(
+        VpDeviceIdType deviceId,
+        VpCriticalSecType criticalSecType);
+
+int32
+VpRoundedDivide(
+    int32 x,
+    int32 y);
+
+
+/* Macros for calling a device-specific API function using the pointer in the
+   Device Context: */
+typedef void (*VpTempFuncPtrType) (void);
 
 #endif //TELLUINO_CONTROLLER_VP_API_TYPE_H

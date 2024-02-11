@@ -5,10 +5,19 @@
 #ifndef TELLUINO_CONTROLLER_MSLIC_API_H
 #define TELLUINO_CONTROLLER_MSLIC_API_H
 
-#include <Arduino.h>
 #include "vp_api_common.h"
 #include "slic_spi.h"
 
+/**< VP_REDUCED_API_IF
+ * Define this to remove the I/F for unsupported functions. This reduces
+ * code size with the only limitation that the application cannot call
+ * functions that would return "Unsupported" for all devices used in the
+ * application. The specific functions removed will depend on the device and
+ * test packages compiled in.
+ */
+#define VP_REDUCED_API_IF
+
+#define VP_CC_886_SERIES
 
 /* ZTAP specific values for device ID depending on the MPI Mode */
 #define MPI_3WIRE       0x0000 /* 3 wire SPI w/ 2.5us interbyte chipselect off-time */

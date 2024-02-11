@@ -6,6 +6,7 @@
 
 #include "mslic_api.h"
 #include "slic_pcm.h"
+#include "vp886_device.h"
 
 
 struct timespec {
@@ -42,8 +43,8 @@ class SlicDevice{
     private:
         VpDevCtxType devCtx;
         VpLineCtxType lineCtx[NUM_LINES];
-        //Vp886DeviceObjectType devObj;
-        //Vp886LineObjectType lineObj[NUM_LINES];
+        Vp886DeviceObjectType devObj;
+        Vp886LineObjectType lineObj[NUM_LINES];
         VpDeviceIdType deviceId = (SM | SPI8_3WIRE);
         SlicSpi *my_spi_bus;
         SlicPcm *my_pcm;

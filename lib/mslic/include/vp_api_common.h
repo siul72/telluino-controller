@@ -13,6 +13,7 @@
 #ifndef VP_API_COMMON_H
 #define VP_API_COMMON_H
 
+#include <Arduino.h>
 #include "vp_api_type.h"
 #include "vp_api_event.h"
 
@@ -2228,5 +2229,22 @@ VpSlacRegRead(
     uint8 cmd,
     uint8 readLen,
     uint8 *pReadBuf);
+
+/** These locations are common to all profiles used in the API */
+typedef enum VpProfileHeaderFieldType {
+    VP_PROFILE_TYPE_MSB = 0,
+    VP_PROFILE_TYPE_LSB = 1,
+    VP_PROFILE_INDEX = 2,
+    VP_PROFILE_LENGTH = 3,
+    VP_PROFILE_VERSION = 4,
+    VP_PROFILE_MPI_LEN = 5,
+    VP_PROFILE_DATA_START = 6,
+    VP_PROFILE_HDR_ENUM_SIZE = FORCE_STANDARD_C_ENUM_SIZE /* Portability Req. */
+} VpProfileHeaderFieldType;
+
+/* To disable VP_DEVICE_OPTION_ID_ADAPTIVE_RINGING, 'power' can be set to 0xFF. */
+#define VP_ADAPTIVE_RINGING_DISABLED 0xFF
+
+
 
 #endif /* VP_API_COMMON_H */
