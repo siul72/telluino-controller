@@ -3,6 +3,7 @@
 
 #include <SPI.h>
 
+
 class SlicSpi
 {
 private:
@@ -15,6 +16,8 @@ public:
     void setup();
     uint16_t readByte();
     void writeByte(uint16_t value);
+    void spi_byte_write(uint32_t deviceId, uint16_t bValue);
+    uint16_t spi_byte_read(uint32_t deviceId);
 
 };
 

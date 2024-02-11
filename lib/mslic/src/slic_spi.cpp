@@ -39,6 +39,8 @@ void SlicSpi::setup()
      SPI.begin();                 // begin SPI
 }
 
+
+
 uint16_t SlicSpi::readByte()
 {
     uint8_t byte_0, byte_1;    // First and second bytes read
@@ -57,6 +59,11 @@ uint16_t SlicSpi::readByte()
     // close SPI transaction
     spi_bytes = ( ( (byte_0 & B00011111) <<7) + (byte_1 >>1) );
     return spi_bytes;
+}
+
+void SlicSpi::spi_byte_write(uint32_t deviceId, uint16_t bValue){
+    this->writeByte(bValue);
+
 }
 
 void SlicSpi::writeByte(uint16_t value)

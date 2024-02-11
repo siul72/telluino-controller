@@ -15,9 +15,9 @@ SlicDevice::~SlicDevice()
 
 void SlicDevice::init_slic_device(){
     VpStatusType status;
-    status = VpMakeDeviceObject(VP_DEV_887_SERIES, deviceId, &devCtx, &devObj);
+    //status = VpMakeDeviceObject(VP_DEV_887_SERIES, deviceId, &devCtx, &devObj);
     if (status != VP_STATUS_SUCCESS) {
-        printf("Error making the device object: %s\n", MapStatus(status));
+        //printf("Error making the device object: %s\n", MapStatus(status));
 
     }
 }
