@@ -5,8 +5,8 @@
 #ifndef TELLUINO_CONTROLLER_MSLIC_API_H
 #define TELLUINO_CONTROLLER_MSLIC_API_H
 
-#include "vp_api_common.h"
 #include "slic_spi.h"
+#include "mslic_enums.h"
 
 /**< VP_REDUCED_API_IF
  * Define this to remove the I/F for unsupported functions. This reduces
@@ -34,18 +34,31 @@
 /* Number of lines supported by the quick start */
 #define NUM_LINES       1
 
-
-//typedef uint32_t VpDeviceIdType;
+typedef uint32_t VpDeviceIdType;
 
 class MicrochipSlicApi {
 
 public:
     MicrochipSlicApi(/* args */);
     ~MicrochipSlicApi();
-    void VpMpiCmd(VpDeviceIdType deviceId,
+    void VpMpiCmd(uint8_t deviceId,
                   uint8_t ecVal, uint8_t cmd, uint8_t cmdLen, uint8_t * dataPtr);
+    VpStatusType VpMakeDeviceObject(VpDeviceType deviceType,
+                                    VpDeviceIdType deviceId, void *pDevCtx, void *pDevObj);
+    VpStatusType VpMakeLineObject( uint8_t termType, uint8_t channelId,
+            void *pLineCtx, void *pLineObj, void *pDevCtx);
+    VpStatusType VpInitDevice(  void *pDevCtx,  void *pDevProfile,  void *pAcProfile,
+            void *pDcProfile,  void *pRingProfile,   void *pFxoAcProfile,  void *pFxoCfgProfile);
+
+    VpStatusType Vp886InitDevicePcnRcn(void *pDevCtx);
+
 private:
     SlicSpi * spi;
+    boolean VpSlacRegWrite( void *pDevCtx, void *pLineCtx,
+                            uint8_t cmd, uint8_t writeLen, const uint8_t *pWriteBuf);
+    boolean VpSlacRegRead( void *pDevCtx,  void *pLineCtx,
+                           uint8_t cmd,  uint8_t readLen, uint8_t *pReadBuf);
+
 
 };
 
