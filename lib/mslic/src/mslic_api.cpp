@@ -258,55 +258,45 @@ VpStatusType MicrochipSlicApi::VpInitDevice(
 {
     VpStatusType status;
     //VP_API_ENTER(VpDevCtxType, pDevCtx, "InitDevice");
+    void *pProf;
+    uint8_t mpiLen;
+    uint8_t shutdownState = VP886_R_STATE_SS_SHUTDOWN;
+    //Vp886EnterCritical(pDevCtx, VP_NULL, "Vp886InitDevice");
 
+    /* Device profile is required. */
+//    if (pDevProfile == nullptr) {
+//        //VP_ERROR(VpDevCtxType, pDevCtx, ("Device profile is required."));
+//        //Vp886ExitCritical(pDevCtx, VP_NULL, "Vp886InitDevice");
+//        return VP_STATUS_ERR_PROFILE;
+//    }
 
-    /* Basic argument checking */
-    if (pDevCtx == nullptr) {
-        //VP_ERROR(VpDevCtxType, pDevCtx, ("InitDevice: Null Device Profile"));
-        status = VP_STATUS_INVALID_ARG;
-    } else {
+    /* Reset device object variables */
+    //Vp886InitDeviceData(pDevCtx);
 
-        void *pProf;
-        uint8_t mpiLen;
-        uint8_t shutdownState = VP886_R_STATE_SS_SHUTDOWN;
+    /* Clear the MPI buffer before trying to access the device, in case there
+       was a command issued earlier that is still expecting data.  Sending a
+       stream of no-ops will satisfy the device's need for more data, and leave
+       it in a state where it is ready to accept a command.  We're calling the
+       common ClearMPIBuffer function twice because the longest command length
+       for ZL880 is longer than it was for other CSLAC devices. */
+    //VpCSLACClearMPIBuffer(pDevObj->deviceId);
+    //VpCSLACClearMPIBuffer(pDevObj->deviceId);
 
-        //Vp886EnterCritical(pDevCtx, VP_NULL, "Vp886InitDevice");
+    /* Hardware Reset the part, but first make sure the switchers are shut down
+       to avoid catching a switcher duty cycle on with the reset signal. */
+    VpSlacRegWrite(pDevCtx, nullptr, VP886_R_STATE_WRT, VP886_R_STATE_LEN, &shutdownState);
+    VpSlacRegWrite(pDevCtx, nullptr, VP886_R_NOOP_WRT, 0, nullptr);
+    VpSlacRegWrite(pDevCtx, nullptr, VP886_R_NOOP_WRT, 0, nullptr);
+    VpSlacRegWrite(pDevCtx, nullptr, VP886_R_NOOP_WRT, 0, nullptr);
+    VpSlacRegWrite(pDevCtx, nullptr, VP886_R_HWRESET_WRT, 0, nullptr);
 
-        /* Device profile is required. */
-        if (pDevProfile == nullptr) {
-            //VP_ERROR(VpDevCtxType, pDevCtx, ("Device profile is required."));
-            //Vp886ExitCritical(pDevCtx, VP_NULL, "Vp886InitDevice");
-            return VP_STATUS_ERR_PROFILE;
-        }
-
-        /* Reset device object variables */
-        //Vp886InitDeviceData(pDevCtx);
-
-        /* Clear the MPI buffer before trying to access the device, in case there
-           was a command issued earlier that is still expecting data.  Sending a
-           stream of no-ops will satisfy the device's need for more data, and leave
-           it in a state where it is ready to accept a command.  We're calling the
-           common ClearMPIBuffer function twice because the longest command length
-           for ZL880 is longer than it was for other CSLAC devices. */
-        //VpCSLACClearMPIBuffer(pDevObj->deviceId);
-        //VpCSLACClearMPIBuffer(pDevObj->deviceId);
-
-        /* Hardware Reset the part, but first make sure the switchers are shut down
-           to avoid catching a switcher duty cycle on with the reset signal. */
-        VpSlacRegWrite(pDevCtx, nullptr, VP886_R_STATE_WRT, VP886_R_STATE_LEN, &shutdownState);
-        VpSlacRegWrite(pDevCtx, nullptr, VP886_R_NOOP_WRT, 0, nullptr);
-        VpSlacRegWrite(pDevCtx, nullptr, VP886_R_NOOP_WRT, 0, nullptr);
-        VpSlacRegWrite(pDevCtx, nullptr, VP886_R_NOOP_WRT, 0, nullptr);
-        VpSlacRegWrite(pDevCtx, nullptr, VP886_R_HWRESET_WRT, 0, nullptr);
-
-        /* Read and verify the revision and product codes.  Need to know this now
-           so we can verify that the profiles are targeted for the correct device. */
-        status = Vp886InitDevicePcnRcn(pDevCtx);
-        if (status != VP_STATUS_SUCCESS) {
-            //pDevObj->busyFlags &= ~VP_DEV_INIT_IN_PROGRESS;
-            //Vp886ExitCritical(pDevCtx, VP_NULL, "Vp886InitDevice");
-            return status;
-        }
+    /* Read and verify the revision and product codes.  Need to know this now
+       so we can verify that the profiles are targeted for the correct device. */
+    status = Vp886InitDevicePcnRcn(pDevCtx);
+    if (status != VP_STATUS_SUCCESS) {
+        //pDevObj->busyFlags &= ~VP_DEV_INIT_IN_PROGRESS;
+        //Vp886ExitCritical(pDevCtx, VP_NULL, "Vp886InitDevice");
+        return status;
     }
 
     //VP_API_EXIT(VpDevCtxType, pDevCtx, "InitDevice", status);
@@ -520,6 +510,7 @@ boolean MicrochipSlicApi::VpSlacRegRead( void *pDevCtx,  void *pLineCtx,
 
     /* Add to the traffic count. Data length + command + EC command + EC data */
     //pDevObj->trafficBytes += dataLen + 3;
+    return true;
 
 }
 

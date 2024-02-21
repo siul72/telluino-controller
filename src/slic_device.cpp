@@ -15,13 +15,27 @@ SlicDevice::~SlicDevice()
     delete slic_api;
 }
 
-void SlicDevice::init_slic_device(){
+VpStatusType SlicDevice::init_slic_device(){
     VpStatusType status;
     status = slic_api->VpMakeDeviceObject(VP_DEV_887_SERIES, deviceId, nullptr, nullptr);
     if (status != VP_STATUS_SUCCESS) {
         //printf("Error making the device object: %s\n", MapStatus(status));
-
+        return status;
     }
+    int lineNum = 0;
+
+    status = slic_api->VpMakeLineObject(VP_TERM_FXS_LOW_PWR, lineNum, nullptr, nullptr, nullptr);
+    if (status != VP_STATUS_SUCCESS) {
+        //printf("Error making the device object: %s\n", MapStatus(status));
+        return status;
+    }
+
+    status = slic_api->VpInitDevice(nullptr, nullptr, nullptr,
+                                    nullptr, nullptr, nullptr,
+                                    nullptr);
+
+    return status;
+
 }
 
 void SlicDevice::setup()

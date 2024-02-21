@@ -20,7 +20,7 @@ class SlicDevice{
         ~SlicDevice();
         void setup();
         void run();
-        void init_slic_device();
+        VpStatusType init_slic_device();
 
     private:
 

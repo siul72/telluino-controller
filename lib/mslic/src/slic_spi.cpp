@@ -5,7 +5,6 @@
 #include "slic_spi.h"
 
 
-
 SlicSpi::SlicSpi()
 {
     const int speedMaximum=20000, dataOrder=MSBFIRST, dataMode=SPI_MODE0;
@@ -28,6 +27,9 @@ SlicSpi::SlicSpi()
      //SPI_MODE2	 | 1	                 |   0	               |    Rising	    |   Falling
      //SPI_MODE3	 | 1	                 |   1	               |    Falling	    |   Rising*/
 
+
+    //SPCR |= _BV(SPE); // turn on SPI in slave mode
+    //SPI.attachInterrupt(); // turn on interrupt
 }
 
 
@@ -44,44 +46,35 @@ void SlicSpi::setup()
     SPI.begin();                 // begin SPI
 }
 
-uint16_t SlicSpi::readByte()
+uint8_t SlicSpi::readByte()
 {
-    uint8_t byte_0, byte_1;    // First and second bytes read
-    uint16_t spi_bytes;       // final 12 bit shifted value
+    uint8_t byte_0;    // First and second bytes read
+
     // put your main code here, to run repeatedly:
     SPI.beginTransaction(*my_setting);
     // set speed bit format and clock/data polarity while starting SPI transaction
     digitalWrite(PIN_SPI_SS, LOW);
     // write the LTC CS pin low to initiate ADC sample and data transmit
-    byte_0 = SPI.transfer(0); // read firt 8 bits
-    byte_1 = SPI.transfer(0); // read second 8 bits
-    //
+    byte_0 = SPI.transfer(0); // read first 8 bits
+
     digitalWrite(PIN_SPI_SS, HIGH);
-    // wite LTC CS pin high to stop LTC from transmitting zeros.
+    // write LTC CS pin high to stop LTC from transmitting zeros.
     SPI.endTransaction();
     // close SPI transaction
-    spi_bytes = ( ( (byte_0 & B00011111) <<7) + (byte_1 >>1) );
-    return spi_bytes;
+
+    return byte_0;
 }
 
-void SlicSpi::writeByte(uint16_t value)
+void SlicSpi::writeByte(uint8_t value)
 {
     //SPI.setBitOrder(MSBFIRST);
-    uint8_t byte_0, byte_1;    // First and second bytes write
     digitalWrite(PIN_SPI_SS, LOW); // A0
-    byte_0 = (value >> 8);
-    byte_1 = (value & 0xFF);
-    //byte_2 = (input_0 >> 8);
-    //byte_3 = (input_0 & 0xFF);
-
-    SPI.transfer(byte_0);
-    SPI.transfer(byte_1);
-
+    SPI.transfer(value);
     digitalWrite(PIN_SPI_SS, HIGH);
 
 }
 
-void SlicSpi::spi_byte_write(uint32_t deviceId, byte reg){
+void SlicSpi::spi_byte_write(uint8_t deviceId, byte reg){
     this->writeByte(reg);
 }
 
