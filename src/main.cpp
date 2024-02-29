@@ -29,7 +29,7 @@ Scheduler runner;
 //UsbDevice my_usb_device(USB_SER_RX, USB_SER_TX);
 SlicDevice my_slic_device;
 
-Task blinkLedTask(1000, TASK_FOREVER, &blinkLeds);
+Task blinkLedTask(500, TASK_FOREVER, &blinkLeds);
 Task readUsbTask(3000, TASK_FOREVER, &readUsb);
 Task slicRunnerTask(500, TASK_FOREVER, &slicRunner);
 
@@ -58,6 +58,18 @@ void slicRunner(){
   slicRunnerTask.enableDelayed(5000);
 }
 
+int getChar (FILE *fp)
+{
+    while (!(Serial.available()));
+    return (Serial.read());
+}
+
+int putChar (char c, FILE *fp)
+{
+    Serial.write (c);
+    return c;
+}
+
  // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
@@ -66,6 +78,7 @@ void setup() {
   pinMode(LED_OP2, OUTPUT);
 
   Serial.begin(115200);
+  fdevopen (putChar, getChar);
   Serial.println("setup...");
   //my_usb_device.setup();
   my_slic_device.setup();

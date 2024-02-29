@@ -329,15 +329,16 @@ VpStatusType MicrochipSlicApi::Vp886InitDevicePcnRcn(void *pDevCtx){
 //        VpCSLACClearMPIBuffer(deviceId);
 //    }
     uint8_t buf_read[VP886_R_RCNPCN_LEN];
-    VpSlacRegRead(pDevCtx, nullptr, (uint8_t)VP886_R_RCNPCN_RD,
-                  (uint8_t)VP886_R_RCNPCN_LEN, (uint8_t*)&buf_read);
+    VpSlacRegRead(pDevCtx, nullptr, (uint8_t)VP886_R_RCNPCN_RD, (uint8_t)VP886_R_RCNPCN_LEN, (uint8_t*)&buf_read);
 
     devicePcn = buf_read[VP886_R_RCNPCN_PCN_IDX];
+    printf("read devicePcn=0x%02X\n", devicePcn);
     deviceRcn = buf_read[VP886_R_RCNPCN_RCN_IDX];
+    printf("read deviceRcn=0x%02X\n", devicePcn);
 
     /* MPI Failure if the PCN and RCN are both 0x00 or 0xFF */
-    if (((devicePcn == 0xFF) && (deviceRcn == 0xFF)) ||
-        ((devicePcn == 0x00) && (deviceRcn == 0x00))) {
+    if (((devicePcn == 0xFF) && (deviceRcn == 0xFF)) || ((devicePcn == 0x00) && (deviceRcn == 0x00))) {
+        printf("MPI Failure if the PCN and RCN are both 0x00 or 0xFF\n");
         //pDevObj->busyFlags &= ~(VP_DEV_INIT_IN_PROGRESS | VP_DEV_INIT_CMP);
 
         //VP_ERROR(VpDevCtxType, pDevCtx, ("Device Failed to Detect Revision/PCN Properly: 0x%02X 0x%02X",
@@ -362,8 +363,7 @@ VpStatusType MicrochipSlicApi::Vp886InitDevicePcnRcn(void *pDevCtx){
         case VP886_R_RCNPCN_PCN_LE9651:
             break;
         default:
-            //VP_ERROR(VpDevCtxType, pDevCtx, ("Device PCN not recognized in ZL880 or miSLIC families: 0x%02X",
-            //        devicePcn));
+            printf("Device PCN not recognized in ZL880 or miSLIC families: 0x%02X\n", devicePcn);
             //VP_API_FUNC_INT(VpDevCtxType, pDevCtx, ("Vp886InitDevicePcnRcn-"));
             return VP_STATUS_ERR_SPI;
     }

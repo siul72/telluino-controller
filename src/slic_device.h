@@ -23,7 +23,7 @@ class SlicDevice{
         VpStatusType init_slic_device();
 
     private:
-
+        char * MapStatus( VpStatusType status);
         VpDeviceIdType deviceId = (SM | SPI8_3WIRE);
         MicrochipSlicApi * slic_api;
         SlicPcm *my_pcm;

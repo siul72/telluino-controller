@@ -39,6 +39,10 @@ SlicSpi::~SlicSpi()
 
 }
 
+void SlicSpi::run(){
+
+}
+
 void SlicSpi::setup()
 {
     pinMode(PIN_SPI_SS, OUTPUT);     // Set SPI slave select pin as output

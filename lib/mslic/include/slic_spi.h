@@ -18,6 +18,7 @@ public:
 
     SlicSpi();
     ~SlicSpi();
+    void run();
     void setup();
     uint8_t readByte();
     void writeByte(uint8_t value);
