@@ -500,7 +500,7 @@ boolean MicrochipSlicApi::VpSlacRegRead( void *pDevCtx,  void *pLineCtx,
 
     /* Write commands should not be allowed */
     if (!(cmd & 0x01)) {
-        //VP_WARNING(VpDevCtxType, pDevCtx, ("Invalid write command in Vp886SlacRegRead (0x%02X)", cmd));
+        printf("Invalid write command in Vp886SlacRegRead (0x%02X)", cmd);
         return false;
     }
 
@@ -510,6 +510,7 @@ boolean MicrochipSlicApi::VpSlacRegRead( void *pDevCtx,  void *pLineCtx,
 
     /* Add to the traffic count. Data length + command + EC command + EC data */
     //pDevObj->trafficBytes += dataLen + 3;
+
     return true;
 
 }
@@ -519,6 +520,7 @@ void MicrochipSlicApi::VpMpiCmd(uint8_t deviceId,
                                 uint8_t *dataPtr) {
     uint8_t cmdIndex = 0;
 /* Write the EC Value to the EC Register */
+    printf("Register");
     spi->spi_byte_write((uint32_t)deviceId, (byte)EC_WRT_CMD);
     spi->spi_byte_write((uint32_t)deviceId, (byte)ecVal);
 /* Write the Command Byte */

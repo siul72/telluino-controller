@@ -55,12 +55,13 @@ uint8_t SlicSpi::readByte()
     uint8_t byte_0;    // First and second bytes read
 
     // put your main code here, to run repeatedly:
+    printf(">> readByte\n");
     SPI.beginTransaction(*my_setting);
     // set speed bit format and clock/data polarity while starting SPI transaction
     digitalWrite(PIN_SPI_SS, LOW);
     // write the LTC CS pin low to initiate ADC sample and data transmit
     byte_0 = SPI.transfer(0); // read first 8 bits
-
+    printf(">> readByte 0x%02X\n", byte_0);
     digitalWrite(PIN_SPI_SS, HIGH);
     // write LTC CS pin high to stop LTC from transmitting zeros.
     SPI.endTransaction();
